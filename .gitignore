@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Secrets
+.env
+.env.*
+*.pem
+*credentials*
+
+# Training / eval outputs (regenerate locally)
+artifacts/
+checkpoints/
+runs/
+logs/
+*.pt
+*.pth
+*.ckpt
+
+# Large data caches / features
+**/dinov3_feats*/
+**/chunk_frames/
+**/window_frames/
+*.mp4
+*.npz
+!tests/**/*.npz
+
+# Third-party weights
+third_party/
+
+# Jupyter
+.ipynb_checkpoints/

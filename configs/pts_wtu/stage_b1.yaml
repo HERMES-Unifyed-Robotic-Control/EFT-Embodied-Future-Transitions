@@ -1,0 +1,10 @@
+# Stage B1 — Action Head warm-up (plan §30). Placeholder.
+# Freeze U predictor; train D_A only for 5k–10k steps.
+
+inherits: configs/pts_wtu/stage_a.yaml
+optim:
+  num_train_steps: 8000
+  lr_action: 1.0e-4
+  freeze_u: true
+log:
+  out_dir: artifacts/runs/pts_wtu_stage_b1

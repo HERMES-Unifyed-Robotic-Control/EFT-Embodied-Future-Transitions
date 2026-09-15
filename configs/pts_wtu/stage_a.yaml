@@ -1,0 +1,43 @@
+# Stage A — World Transition Pretraining (plan §29, §48)
+# Loss: L_V + λ_S L_S, λ_S=1.0; no action loss.
+
+data:
+  config: configs/pts_wtu/data_robocasa.yaml
+  records_dir: artifacts/pts_wtu_robocasa/records
+  dino_dir: artifacts/pts_wtu_robocasa/dinov3_windows
+  stats_path: artifacts/pts_wtu_robocasa/norm_stats.npz
+
+model:
+  d_context: 512
+  d_u: 512
+  K: 4
+  n_history_frames: 4
+  n_views: 2
+  tokens_per_view: 16   # 4x4 pool
+  d_vision_proj: 256
+  hist_visual_layers: 4
+  hist_visual_heads: 8
+  hist_state_layers: 2
+  u_cross_layers: 2
+  u_cross_heads: 8
+  visual_decoder_layers: 4
+  state_decoder_hidden: 1024
+  state_samples_per_interval: 4
+
+optim:
+  lr: 1.0e-4
+  weight_decay: 0.01
+  batch_size: 32
+  num_train_steps: 80000
+  warmup_steps: 1000
+  grad_clip: 1.0
+  lambda_s: 1.0
+  bf16: true
+  seed: 0
+  num_workers: 4
+
+log:
+  out_dir: artifacts/runs/pts_wtu_stage_a
+  log_interval: 50
+  eval_interval: 1000
+  save_interval: 5000

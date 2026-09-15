@@ -1,0 +1,46 @@
+# Predictive WTU — RoboCasa window defaults (plan §5–§8, §48)
+
+dataset:
+  index_root: /XYAIFS00/HDD_POOL/sysu_xdliang/sysu_xdliang_1/linmin/datasets/robocasa365-datasets
+  out_dir: artifacts/pts_wtu_robocasa
+  layout: official_ee_first
+
+horizon:
+  control_hz: 20
+  history_sec: 0.5
+  history_frames: 4   # N_h
+  future_sec: 1.5
+  H: 30               # future steps @ 20 Hz
+  K: 4
+  # equal splits: [0,7.5), [7.5,15), [15,22.5), [22.5,30) in frames
+
+views:
+  - robot0_agentview_left
+  - robot0_eye_in_hand
+  # robot0_agentview_right  # enable when exporting 3-view features
+
+sampling:
+  frames_per_episode: 8
+  val_episode_frac: 0.1
+  seed: 0
+  moving_static_ratio: 4.0   # §8 Moving:Static ≈ 4:1
+
+tasks:
+  NavigateKitchen:
+    split_path: pretrain/atomic/NavigateKitchen
+    category: navigation
+  PickPlaceCounterToStove:
+    split_path: pretrain/atomic/PickPlaceCounterToStove
+    category: manipulation
+  CloseCabinet:
+    split_path: pretrain/atomic/CloseCabinet
+    category: manipulation
+  PickPlaceCabinetToCounter:
+    split_path: pretrain/atomic/PickPlaceCabinetToCounter
+    category: loco_manipulation
+  GetToastedBread:
+    split_path: pretrain/composite/GetToastedBread
+    category: loco_manipulation
+  BalancedMealPrep:
+    split_path: pretrain/composite/BalancedMealPrep
+    category: loco_manipulation

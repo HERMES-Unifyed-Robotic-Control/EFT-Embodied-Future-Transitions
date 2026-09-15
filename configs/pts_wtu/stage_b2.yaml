@@ -1,0 +1,12 @@
+# Stage B2 — Joint executable grounding (plan §31). Placeholder.
+# L = L_V + L_S + 0.25 L_A; lower LR on U.
+
+inherits: configs/pts_wtu/stage_a.yaml
+optim:
+  num_train_steps: 40000
+  lr_u: 2.0e-5
+  lr_action: 1.0e-4
+  lambda_a: 0.25
+  freeze_u: false
+log:
+  out_dir: artifacts/runs/pts_wtu_stage_b2
